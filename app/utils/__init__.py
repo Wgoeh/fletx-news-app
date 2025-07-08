@@ -1,11 +1,11 @@
 from flet import *
 from fletx.core import FletXController
 from .theme import dark_gradient
-from .images import with_random_img
+from .articles import get_fake_articles
 
 __all__ = [
     'dark_gradient',
-    'with_random_img',
+    'get_fake_articles',
     'show_loader',
     'show_snackbar'
 ]
@@ -38,7 +38,7 @@ def show_loader(controller: FletXController,page: Page):
                 on_dismiss = lambda e: print("Dialog dismissed!"),
                 title_padding = padding.all(25),
             )
-
+            show_loader.dlg = dlg
 
         if controller._is_loading.value:
             page.open(dlg)
@@ -46,7 +46,7 @@ def show_loader(controller: FletXController,page: Page):
         else: 
             page.close(dlg)
 
-        show_loader.dlg = dlg
+        
 
 def show_snackbar(
     page: Page,

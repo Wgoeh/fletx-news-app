@@ -33,7 +33,7 @@ class NewsController(FletXController):
         ]
 
         # Services
-        self.news_service: NewsService = FletX.put(NewsService(test_mode=True),'news')
+        self.news_service: NewsService = FletX.put(NewsService(test_mode=False),'news')
         super().__init__()
 
     def on_initialized(self):

@@ -34,6 +34,8 @@ class OnboardingPage(FletXPage):
     def on_init(self):
         """Hook called when OnboardingPage in initialized"""
 
+        # Watch controller's loading state and 
+        # show loader when it changes.
         self.watch(
             self.newsController._is_loading,
             callback = lambda: show_loader(
@@ -43,6 +45,7 @@ class OnboardingPage(FletXPage):
             immediate = True
         )
         
+        # Fetch news for all gategories
         self.newsController.fetch_all_category_news()
         
 
