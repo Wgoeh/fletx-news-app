@@ -33,7 +33,7 @@ class NewsController(FletXController):
         ]
 
         # Services
-        self.news_service: NewsService = FletX.put(NewsService(),'news')
+        self.news_service: NewsService = FletX.put(NewsService(test_mode=True),'news')
         super().__init__()
 
     def on_initialized(self):
@@ -42,8 +42,17 @@ class NewsController(FletXController):
 
     def fetch_all_category_news(self):
         """Fetch news for each category"""
-        for category in self.categories:
-            self.get_category_news(category = category)
+
+        self.set_loading(True)
+        try:
+            for category in self.categories:
+                self.get_category_news(category = category, bulk=True)
+
+        except Exception as e:
+            self.set_error(str(e))
+
+        finally:
+            self.set_loading(False)
 
     def on_ready(self):
         """Hook called when the controller is ready"""
@@ -73,11 +82,12 @@ class NewsController(FletXController):
         finally: 
             self.set_loading(False)
 
-    def get_category_news(self, category: Optional[str] = None):
+    def get_category_news(self, category: Optional[str] = None, bulk = False):
         """Get a given category news fom service."""
 
         # Change State
-        self.set_loading(True)
+        if not bulk:
+            self.set_loading(True)
 
         try:
             print(f'Fetching {category}.......................................')
@@ -95,10 +105,13 @@ class NewsController(FletXController):
 
         # Exception occures
         except Exception as e:
-            print(f'Error when fetching category news: {e}')
+            print(f'Error when fetching category {category} news: {e}')
+            import traceback
+            traceback.print_exc()
             self.set_error(str(e))
 
         # Change State
         finally: 
-            self.set_loading(False)
+            if not bulk:
+                self.set_loading(False)
     

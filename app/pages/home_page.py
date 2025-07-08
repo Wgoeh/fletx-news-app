@@ -6,6 +6,7 @@ This Page class is generated from a template.
 
 from flet import *
 from typing import List
+from flet_contrib.shimmer import Shimmer
 from fletx import FletX
 from fletx.core import FletXPage
 from fletx.navigation import navigate
@@ -17,6 +18,7 @@ from app.components import (
 )
 from app.controllers import NewsController
 from app.models import Article
+from app.utils import show_snackbar
 
 
 class HomePage(FletXPage):
@@ -36,10 +38,7 @@ class HomePage(FletXPage):
     def on_init(self):
         """Hook called when HomePage in initialized"""
 
-        self.news_ctrl.popular_news.listen(lambda: print('updated..............................'), auto_dispose=False)
-
-        # self.news_ctrl.get_popular_news()
-        # print(self.news_ctrl.popular_news)
+        print("HomePage is initialized")
 
     def on_destroy(self):
         """Hook called when HomePage will be unmounted."""
@@ -72,15 +71,52 @@ class HomePage(FletXPage):
             f'{category}_news'
         )
 
+        if not news:
+            return Column(
+                controls = [
+                    Container(
+                        height = 100,
+                        padding = 10,
+                        width = self.width,
+                        border_radius = 20,
+                        bgcolor = Colors.SURFACE,
+
+                        content = Row(
+                            spacing = 10,
+                            controls = [
+                                # IMAGE CONTAINER
+                                Container(
+                                    height = 90,
+                                    width = 110,
+                                    # content = 
+                                    data = 'shimmer_load'
+                                ),
+
+                                # TITLE AND DESCRIPTION
+                                Column(
+                                    expand = True,
+                                    horizontal_alignment = CrossAxisAlignment.START,
+                                    controls = [
+                                        # TITLE AND DESCRIPTION SHIMMERS
+                                    ]
+                                )
+                            ]
+                        )
+                    )
+                ]
+            )
+
         return Column(
             spacing = 10,
             controls = [
                 Container(
+                    ink = True,
                     height = 100,
                     padding = 10,
                     width = self.width,
                     border_radius = 20,
                     bgcolor = Colors.SURFACE,
+                    on_click = lambda e: navigate('/details', data = {'article': article}),
 
                     content = Row(
                         spacing = 10,
@@ -91,7 +127,8 @@ class HomePage(FletXPage):
                                 width = 110,
                                 content = Image(
                                     src = article.url_to_image,
-                                    fit = ImageFit.COVER
+                                    fit = ImageFit.COVER,
+                                    data = 'shimmer_load'
                                 )
                             ),
 
@@ -105,14 +142,16 @@ class HomePage(FletXPage):
                                         color = Colors.ON_SURFACE,
                                         size = 13,
                                         max_lines = 2,
-                                        weight = FontWeight.W_500
+                                        weight = FontWeight.W_500,
+                                        data = 'shimmer_load'
                                     ),
                                     Text(
                                         article.description[:100] + '...',
                                         color = Colors.ON_SURFACE,
                                         size = 11,
                                         max_lines = 3,
-                                        weight = FontWeight.W_400
+                                        weight = FontWeight.W_400,
+                                        data = 'shimmer_load'
                                     )
                                 ]
                             )
@@ -166,7 +205,7 @@ class HomePage(FletXPage):
                     Container(height = 10),
 
                     # TITLE
-                    Text("Discover Breaking News", size = 26, weight=FontWeight.W_600),
+                    Text("Explore Today's World News", size = 26, weight=FontWeight.W_600),
 
                     # SEARCH BAR
                     # Phone number field content
@@ -228,7 +267,12 @@ class HomePage(FletXPage):
                                                     Text("Popular News", size=16, weight=FontWeight.W_600),
                                                     IconButton(
                                                         icon_color=Colors.ON_PRIMARY_CONTAINER,
-                                                        on_click=lambda e: None,
+                                                        on_click = lambda e: show_snackbar(
+                                                            self.page,
+                                                            type = 'warning',
+                                                            title = 'Alert!',
+                                                            message = 'No content available here... there\'s no page here....'
+                                                        ),
 
                                                         content = Row(
                                                             controls = [
@@ -248,7 +292,6 @@ class HomePage(FletXPage):
 
                                                 content = PopularlistComponent(
                                                     rx_items = self.news_ctrl.popular_news,
-                                                    
                                                 )
                                             )
                                         ]
@@ -274,7 +317,12 @@ class HomePage(FletXPage):
                                                 Text("Top Categories", size=16, weight=FontWeight.W_600),
                                                 IconButton(
                                                     icon_color=Colors.ON_PRIMARY_CONTAINER,
-                                                    on_click=lambda e: None,
+                                                    on_click = lambda e: show_snackbar(
+                                                        self.page,
+                                                        type = 'warning',
+                                                        title = 'Alert!',
+                                                        message = 'No content available here... there\'s no page here....'
+                                                    ),
 
                                                     content = Row(
                                                         controls = [

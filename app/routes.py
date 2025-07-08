@@ -12,7 +12,7 @@ from fletx.decorators import register_router
 
 from .pages import (
     CounterPage, OnboardingPage,
-    HomePage
+    HomePage, DetailsPage
 )
 
 # Define Taskio routes here
@@ -24,22 +24,14 @@ routes = [
     {
         'path': '/welcome',
         'component': OnboardingPage,
-        # 'meta': {
-        #     'transition': RouteTransition(
-        #         type=TransitionType.NONE,
-        #         duration=500,
-        #     )
-        # }
     },
     {
         'path': '/',
         'component': HomePage,
-        'meta': {
-            'transition': RouteTransition(
-                type = TransitionType.FADE,
-                duration = 350,
-            )
-        }
+    },
+    {
+        'path': '/details',
+        'component': DetailsPage,
     }
 ]
 

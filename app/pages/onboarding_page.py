@@ -8,10 +8,12 @@ from flet import *
 from fletx import FletX
 from fletx.core import FletXPage
 from fletx.navigation import navigate
-from fletx.utils import run_async, get_event_loop
+# from fletx.utils import run_async, get_event_loop
 
 # Import your modules here...
-from app.utils import dark_gradient
+from app.utils import (
+    dark_gradient, show_loader, show_snackbar
+)
 from app.controllers import NewsController
 
 
@@ -28,16 +30,18 @@ class OnboardingPage(FletXPage):
         )
 
         # ...
-        self.watch(
-            self.newsController._is_loading,
-            callback= lambda: print('\n\n\n\nController loading state changed\n\n\n\n'),
-            immediate = True
-        )
 
     def on_init(self):
         """Hook called when OnboardingPage in initialized"""
 
-        print("OnboardingPage is initialized")
+        self.watch(
+            self.newsController._is_loading,
+            callback = lambda: show_loader(
+                controller = self.newsController,
+                page = self.page
+            ),
+            immediate = True
+        )
         
         self.newsController.fetch_all_category_news()
         
@@ -99,7 +103,16 @@ class OnboardingPage(FletXPage):
                                 alignment = alignment.center,
                                 bgcolor = Colors.PRIMARY_CONTAINER,
                                 border_radius = 32,
-                                on_click = lambda e: navigate('/'),
+                                on_click = (
+                                    lambda e: navigate('/') 
+                                    if not self.newsController._is_loading.value 
+                                    else show_snackbar(
+                                        page = self.page,
+                                        title = 'Please wait a bit more',
+                                        message = 'Please wait until news data is loaded!',
+                                        type = 'info'
+                                    )
+                                ),
 
                                 content = Icon(
                                     Icons.ARROW_FORWARD,

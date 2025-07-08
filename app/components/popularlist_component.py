@@ -32,7 +32,7 @@ from .newscard_component import NewscardComponent
     ),
     animate_changes = True
 )
-class PopularlistComponent(ft.ListView):    # 🧩 You can replace ft.Container with any other Flet control
+class PopularlistComponent(ft.ListView):
     """Reactive Popularlist Widget"""
 
     def __init__(self, rx_items: RxList = RxList([]), **kwargs):
@@ -52,103 +52,10 @@ class PopularlistComponent(ft.ListView):    # 🧩 You can replace ft.Container 
     def before_update(self):
         """Action to perform before component update"""
 
-        # self._rebuild_list()
-        print("\n\nupdating................................................\n\n")
-        # print(self.rx_items.value, self._is_mounted)
-
+        # I think @reactive_list decoratore have some issues 
+        # when rebuilding liste elements, so i'll do it manually
+        # fot this sample project. It will be updated once the 
+        # issues are fixed.
         self.controls = [
             NewscardComponent(data = item) for item in self.rx_items
         ]
-
-
-# items = RxList([
-#     Article(
-#         source = ArticleSource(
-#             id = 'bbc',
-#             name = 'bbc news'
-#         ),
-#         author = 'John doe',
-#         title = "We're building news app with flet and FletX",
-#         description = 'A FletX showcase creating a sample News App',
-#         url = 'https://alldotpy.github.io/FletX/',
-#         url_to_image = 'https://alldotpy.github.io/FletX/assets/logo/fletx_t.png',
-#         published_at = '',
-#         content = (
-#             'we made a sample news app using the GetX-like micro-framework for flet. '
-#             'This project shows how to use flet with fletx create reactive apps, '
-#             'it shows also how to usee some fletx compnents like Controllers, Pages, '
-#             'Services, Reactive States with RX[T] variants, widget decorators and more...'
-#         )
-#     )
-# ])
-
-# mylist = PopularlistComponent(
-#     rx_items = items
-# )
-
-# mylist._setup_list_binding()
-# mylist._rebuild_list()
-# mylist.did_mount()
-# # mylist._list_observer.notify()
-# print(mylist._is_mounted)
-# print(mylist.rx_items)
-# print(mylist.controls)
-# print(mylist._list_observer)
-# print(mylist._get_control_name())
-
-# items.value =  [
-#     Article(
-#         source = ArticleSource(
-#             id = 'bbc',
-#             name = 'bbc news'
-#         ),
-#         author = 'John doe',
-#         title = "We're building news app with flet and FletX",
-#         description = 'A FletX showcase creating a sample News App',
-#         url = 'https://alldotpy.github.io/FletX/',
-#         url_to_image = 'https://alldotpy.github.io/FletX/assets/logo/fletx_t.png',
-#         published_at = '',
-#         content = (
-#             'we made a sample news app using the GetX-like micro-framework for flet. '
-#             'This project shows how to use flet with fletx create reactive apps, '
-#             'it shows also how to usee some fletx compnents like Controllers, Pages, '
-#             'Services, Reactive States with RX[T] variants, widget decorators and more...'
-#         )
-#     ),
-#     Article(
-#         source = ArticleSource(
-#             id = 'bbc',
-#             name = 'bbc news'
-#         ),
-#         author = 'John doe',
-#         title = "We're building news app with flet and FletX",
-#         description = 'A FletX showcase creating a sample News App',
-#         url = 'https://alldotpy.github.io/FletX/',
-#         url_to_image = 'https://alldotpy.github.io/FletX/assets/logo/fletx_t.png',
-#         published_at = '',
-#         content = (
-#             'we made a sample news app using the GetX-like micro-framework for flet. '
-#             'This project shows how to use flet with fletx create reactive apps, '
-#             'it shows also how to usee some fletx compnents like Controllers, Pages, '
-#             'Services, Reactive States with RX[T] variants, widget decorators and more...'
-#         )
-#     ),
-#     Article(
-#         source = ArticleSource(
-#             id = 'bbc',
-#             name = 'bbc news'
-#         ),
-#         author = 'John doe',
-#         title = "We're building news app with flet and FletX",
-#         description = 'A FletX showcase creating a sample News App',
-#         url = 'https://alldotpy.github.io/FletX/',
-#         url_to_image = 'https://alldotpy.github.io/FletX/assets/logo/fletx_t.png',
-#         published_at = '',
-#         content = (
-#             'we made a sample news app using the GetX-like micro-framework for flet. '
-#             'This project shows how to use flet with fletx create reactive apps, '
-#             'it shows also how to usee some fletx compnents like Controllers, Pages, '
-#             'Services, Reactive States with RX[T] variants, widget decorators and more...'
-#         )
-#     )
-# ]

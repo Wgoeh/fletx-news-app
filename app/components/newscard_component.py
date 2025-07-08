@@ -19,6 +19,7 @@ from fletx.core import (
 from fletx.decorators import (
     simple_reactive
 )
+from fletx.navigation import navigate
 
 from app.models import Article
 from app.utils import dark_gradient
@@ -36,13 +37,16 @@ class NewscardComponent(Container):
     def __init__(self, data: Article, **kwargs):
         self.article = data
 
-        print('NewsCard called....................................................')
         super().__init__(
+            # ink = True,
             expand = True,
             width = 270,
             border_radius = 20,
             # bgcolor = Colors.PRIMARY_CONTAINER,
             clip_behavior= ClipBehavior.HARD_EDGE,
+            on_click = lambda e: navigate(
+                '/details',data = {'article': self.article}
+            ),
             **kwargs
         )
 
@@ -61,7 +65,6 @@ class NewscardComponent(Container):
 
             controls = [
                 Container(
-                    # expand = True,
                     height = 300,
                     width = self.width,
                     border_radius = 20,

@@ -241,16 +241,16 @@ wheels = [
 
 [[package]]
 name = "fastapi"
-version = "0.115.14"
+version = "0.116.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
     { name = "starlette" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ca/53/8c38a874844a8b0fa10dd8adf3836ac154082cf88d3f22b544e9ceea0a15/fastapi-0.115.14.tar.gz", hash = "sha256:b1de15cdc1c499a4da47914db35d0e4ef8f1ce62b624e94e0e5824421df99739", size = 296263, upload-time = "2025-06-26T15:29:08.21Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/20/38/e1da78736143fd885c36213a3ccc493c384ae8fea6a0f0bc272ef42ebea8/fastapi-0.116.0.tar.gz", hash = "sha256:80dc0794627af0390353a6d1171618276616310d37d24faba6648398e57d687a", size = 296518, upload-time = "2025-07-07T15:09:27.82Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/53/50/b1222562c6d270fea83e9c9075b8e8600b8479150a18e4516a6138b980d1/fastapi-0.115.14-py3-none-any.whl", hash = "sha256:6c0c8bf9420bd58f565e585036d971872472b4f7d3f6c73b698e10cffdefb3ca", size = 95514, upload-time = "2025-06-26T15:29:06.49Z" },
+    { url = "https://files.pythonhosted.org/packages/2f/68/d80347fe2360445b5f58cf290e588a4729746e7501080947e6cdae114b1f/fastapi-0.116.0-py3-none-any.whl", hash = "sha256:fdcc9ed272eaef038952923bef2b735c02372402d1203ee1210af4eea7a78d2b", size = 95625, upload-time = "2025-07-07T15:09:26.348Z" },
 ]
 
 [[package]]
@@ -288,6 +288,18 @@ dependencies = [
 ]
 wheels = [
     { url = "https://files.pythonhosted.org/packages/22/33/9398add46c07a8247a28dc05fd96e26d12d07c7153126ce67ed42a6439bb/flet_cli-0.28.3-py3-none-any.whl", hash = "sha256:2759e4526472a32a584836cf926a9c3ba8fe6e363b4305454a759668d4fcad70", size = 44149, upload-time = "2025-05-20T19:44:57.336Z" },
+]
+
+[[package]]
+name = "flet-contrib"
+version = "2024.12.3"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "flet" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5c/fc/203bd0d7f673b921d2adda92b3016f9b4f3a16183e660155338e6627d813/flet_contrib-2024.12.3.tar.gz", hash = "sha256:9e7c9884b9840bec2de1dd10d7c441f60e6253af1a86751322970e3a9b4f29a0", size = 10976915, upload-time = "2024-12-03T20:49:55.298Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8c/16/98169c1011a1f6aab256df623f225ab2ef129c5c13f75fde3fc1fa900e26/flet_contrib-2024.12.3-py3-none-any.whl", hash = "sha256:2444eb6d68bc20cbe0bf8fc3fee5b7e1dd3dbec4047b063ee5d5a1ee73c47c6a", size = 10984998, upload-time = "2024-12-03T20:49:53.035Z" },
 ]
 
 [[package]]
@@ -994,6 +1006,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "flet", extra = ["all"] },
+    { name = "flet-contrib" },
     { name = "fletxr" },
     { name = "newsapi-python" },
     { name = "newsdataapi" },
@@ -1004,6 +1017,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "flet", extras = ["all"] },
+    { name = "flet-contrib", specifier = ">=2024.12.3" },
     { name = "fletxr", specifier = "==0.1.4a0" },
     { name = "newsapi-python", specifier = ">=0.2.7" },
     { name = "newsdataapi", specifier = ">=0.1.25" },
