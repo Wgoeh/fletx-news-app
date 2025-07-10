@@ -141,12 +141,13 @@ class DetailsPage(FletXPage):
                                                 # ARTICLE SOURCE
                                                 Container(
                                                     padding = 6,
-                                                    bgcolor = Colors.PRIMARY,
+                                                    bgcolor = Colors.PRIMARY_CONTAINER,
                                                     border_radius = 5,
                                                     content = Text(
                                                         self.article.source.name,
                                                         size = 14,
-                                                        weight = FontWeight.W_600
+                                                        weight = FontWeight.W_600,
+                                                        color = Colors.ON_PRIMARY
                                                     ),
                                                     # alignment = alignment.center_right
                                                 ),
@@ -173,7 +174,7 @@ class DetailsPage(FletXPage):
                                             bottom_left = 0,
                                             bottom_right = 0
                                         ),
-                                        bgcolor = Colors.PRIMARY_CONTAINER,
+                                        bgcolor = Colors.SURFACE,
                                         padding = Padding(left= 20, right = 20, top = 20, bottom = 0),
 
                                         content = Column(

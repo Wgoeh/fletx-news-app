@@ -30,7 +30,7 @@ class HomePage(FletXPage):
         )
         super().__init__(
             padding = padding.only(left=20, right=20, top=0, bottom=0),
-            # bgcolor = Colors.BLACK
+            # bgcolor = Colors.SURFACE
         )
 
         # ...
@@ -56,7 +56,10 @@ class HomePage(FletXPage):
             tabs = [
                 Tab(
                     text = category.capitalize(),
-                    content = self.build_category_content(category)
+                    content = Container(
+                        padding = Padding(left = 10, right = 10, top = 10, bottom = 0),
+                        content = self.build_category_content(category)
+                    )
                 )
                 for category in self.news_ctrl.categories
             ]
@@ -208,12 +211,11 @@ class HomePage(FletXPage):
                     Text("Explore Today's World News", size = 26, weight=FontWeight.W_600),
 
                     # SEARCH BAR
-                    # Phone number field content
                     Container(
                         height = 50,
                         padding = 10,
                         border_radius = 25,
-                        bgcolor = Colors.PRIMARY_CONTAINER,
+                        bgcolor = Colors.SURFACE,
 
                         # Content
                         content = FromTextField(

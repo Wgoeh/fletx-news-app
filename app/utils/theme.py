@@ -7,7 +7,7 @@ dark_gradient = ft.LinearGradient(
     rotation = -30,
     colors=[
         "#1E1E2F23",  # Dark Grayish Blue
-        "#0A0A11",  # Desaturated Navy
+        "#000317",  # Desaturated Navy
         # "#1F1F2B"   # Back to Dark Gray
     ]
 )
@@ -37,12 +37,12 @@ light_theme = ft.Theme(
 #### APP DARK THEME
 dark_theme = ft.Theme(
     color_scheme=ft.ColorScheme(
-        primary="#6366F1",        # Indigo 500
-        primary_container = "#191D2D",  # Indigo background
+        primary="#e5c4eb",        # Indigo 500
+        primary_container = "#554d63",  # Indigo background
         secondary="#94A3B8",      # Slate 400
         secondary_container="#253745",  # Dark slate background
-        surface="#111827",        # Gray 900
-        background="#0F172A",     # Gray 950
+        surface="#0d1629",        # Gray 900
+        background="#000317",     # Gray 950
         error="#F87171",          # Red 400
         on_primary="#FFFFFF",
         on_secondary="#000000",
@@ -51,6 +51,7 @@ dark_theme = ft.Theme(
         on_error="#000000"
     ),
     # brightness=ft.Brightness.DARK,
+    scaffold_bgcolor = '#000317',
     use_material3=True,
     visual_density=ft.VisualDensity.COMFORTABLE,
     font_family="Roboto"
